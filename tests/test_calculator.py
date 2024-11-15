@@ -8,19 +8,13 @@ class Calculator:
     def __init__ (self):
         self.clear()
 
+    @given("the calculator is cleared")
     def clear (self):
         self.result = 0
 
+    @when(parsers.parse("I add {number}"))
     def add (self, number):
         self.result += int(number)
-
-@given("the calculator is cleared")
-def clear(calc):
-    calc.clear()
-
-@when(parsers.parse("I add {number}"))
-def add(calc, number):
-    calc.add(number)
 
 @then(parsers.parse("the result should be {result}"))
 def check_result(calc, result):
